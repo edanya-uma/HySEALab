@@ -6,7 +6,9 @@ Herramienta interactiva para visualizar y analizar resultados de simulaciones de
 
 - **epsilon.py**: Biblioteca principal con todas las funciones de visualización
 - **Manual_Usuario_Epsilon.ipynb**: Tutorial interactivo y documentación completa
+- **epsilon_config_example.py**: Plantilla de configuración para rutas personalizadas
 - **simulaciones/**: Directorio para tus archivos .nc (crear si no existe)
+- **README.md**: Este archivo
 
 ## 🚀 Inicio Rápido
 
@@ -42,6 +44,7 @@ El entorno HySEALab tiene una estructura específica donde cada usuario tiene:
 
 Cada usuario debe configurar sus rutas según dónde tenga sus datos:
 
+**Método 1: Configuración directa en el notebook**
 ```python
 import epsilon
 
@@ -54,6 +57,24 @@ epsilon.configure_paths(
 
 # Ver configuración actual
 epsilon.show_configuration()
+```
+
+**Método 2: Usar archivo de configuración (recomendado)**
+```bash
+# Copiar el ejemplo a tu directorio personal
+cp epsilon_config_example.py ~/mi_proyecto/epsilon_config.py
+# Editar con tus rutas
+nano ~/mi_proyecto/epsilon_config.py
+```
+
+Luego en tu notebook:
+```python
+import epsilon
+import sys
+sys.path.insert(0, '~/mi_proyecto')
+import epsilon_config
+
+epsilon.configure_paths(**epsilon_config.PATHS)
 ```
 
 **Fuera del entorno HySEALab:**
