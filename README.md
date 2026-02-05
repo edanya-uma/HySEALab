@@ -32,13 +32,44 @@ pip install pygmt
 pip install numpy matplotlib ipywidgets netCDF4 xarray pyproj imageio
 ```
 
-### 3. Preparar estructura de directorios
+### 3. Configurar rutas personalizadas
+
+**En entorno HySEALab:**
+
+El entorno HySEALab tiene una estructura específica donde cada usuario tiene:
+- `~/HySEALab` → enlace a `/mnt/scratch/HySEALab` (carpeta compartida)
+- Carpetas compartidas: `simulaciones/`, `mallados/`, `HySEALab-Library/`
+
+Cada usuario debe configurar sus rutas según dónde tenga sus datos:
+
+```python
+import epsilon
+
+# Configurar rutas personalizadas
+epsilon.configure_paths(
+    simulaciones="~/HySEALab/simulaciones",  # o tu ruta personalizada
+    mallados="~/HySEALab/mallados",
+    plots="~/mis_resultados/plots"
+)
+
+# Ver configuración actual
+epsilon.show_configuration()
+```
+
+**Fuera del entorno HySEALab:**
+
+Si no configuras nada, epsilon usa rutas relativas por defecto:
+- `./simulaciones`
+- `./mallados`
+- `./plots`
+
+### 4. Preparar estructura de directorios (opcional)
 
 ```bash
 mkdir -p simulaciones plots
 ```
 
-### 4. Abrir el notebook
+### 5. Abrir el notebook
 
 ```bash
 jupyter notebook Manual_Usuario_Epsilon.ipynb
@@ -93,6 +124,72 @@ Consulta el notebook `Manual_Usuario_Epsilon.ipynb` para:
 - Ejemplos de uso
 - Referencia de todas las funciones
 - Casos de uso avanzados
+
+## 🏢 Entorno HySEALab (Universidad de Málaga)
+
+### Estructura del sistema
+
+El cluster de HySEALab tiene una estructura específica:
+
+```
+/mnt/scratch/HySEALab/              (carpeta compartida)
+├── HySEALab-Library/               (repositorio GitHub - código compartido)
+│   ├── epsilon.py
+│   ├── Manual_Usuario_Epsilon.ipynb
+│   └── README.md
+├── simulaciones/                    (simulaciones compartidas)
+├── mallados/                        (mallados compartidos)
+└── ...
+
+/home/usuario/                       (home de cada usuario)
+├── HySEALab -> /mnt/scratch/HySEALab  (enlace simbólico)
+├── mis_simulaciones/                (datos personales del usuario)
+└── resultados/                      (resultados personales)
+```
+
+### Uso recomendado en HySEALab
+
+1. **Importar epsilon desde la carpeta compartida:**
+```python
+import sys
+sys.path.insert(0, '~/HySEALab/HySEALab-Library')
+import epsilon
+```
+
+2. **Configurar rutas según tus necesidades:**
+```python
+# Opción A: Usar carpetas compartidas
+epsilon.configure_paths(
+    simulaciones="~/HySEALab/simulaciones",
+    mallados="~/HySEALab/mallados",
+    plots="~/resultados/plots"
+)
+
+# Opción B: Usar tus carpetas personales
+epsilon.configure_paths(
+    simulaciones="~/mis_simulaciones",
+    mallados="~/mis_mallados",
+    plots="~/resultados/plots"
+)
+
+# Opción C: Mezclar carpetas compartidas y personales
+epsilon.configure_paths(
+    simulaciones="~/HySEALab/simulaciones",  # compartidas
+    plots="~/mi_carpeta/graficos"             # personales
+)
+```
+
+3. **Verificar configuración:**
+```python
+epsilon.show_configuration()
+```
+
+### Ventajas de este enfoque
+
+- ✅ **Código compartido**: Todos usan la misma versión de epsilon.py
+- ✅ **Datos flexibles**: Cada usuario decide dónde tiene sus simulaciones
+- ✅ **Sin conflictos**: Los resultados se guardan en carpetas personales
+- ✅ **Fácil actualización**: `git pull` en HySEALab-Library actualiza epsilon para todos
 
 ## 🤝 Contribuir
 

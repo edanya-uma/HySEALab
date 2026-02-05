@@ -12,6 +12,136 @@ from pyproj import CRS, Transformer
 import imageio.v2 as imageio
 import math
 
+# ============================================================================
+# CONFIGURACIÓN DE RUTAS - Personalizable por usuario
+# ============================================================================
+"""
+Los usuarios deben configurar estas rutas según su entorno.
+
+En el entorno estándar de HySEALab:
+- Cada usuario tiene un link ~/HySEALab -> /mnt/scratch/HySEALab
+- Las rutas por defecto apuntan a la estructura compartida
+- Cada usuario puede personalizar estas rutas según sus necesidades
+
+Para configurar rutas personalizadas, usar la función configure_paths() después
+de importar epsilon:
+    
+    import epsilon
+    epsilon.configure_paths(
+        simulaciones="/mi/ruta/simulaciones",
+        mallados="/mi/ruta/mallados",
+        plots="/mi/ruta/plots"
+    )
+"""
+
+# Rutas por defecto - Apuntan a la estructura compartida de HySEALab
+_DEFAULT_PATHS = {
+    'simulaciones': './simulaciones',
+    'mallados': './mallados',
+    'plots': './plots',
+    'hysealab_shared': None  # Se detecta automáticamente
+}
+
+# Rutas activas (se pueden modificar con configure_paths)
+_PATHS = _DEFAULT_PATHS.copy()
+
+
+def configure_paths(simulaciones=None, mallados=None, plots=None, hysealab_shared=None):
+    """
+    Configura las rutas personalizadas para el usuario.
+    
+    Parámetros:
+    -----------
+    simulaciones : str, opcional
+        Ruta al directorio de simulaciones. Por defecto: './simulaciones'
+    mallados : str, opcional
+        Ruta al directorio de mallados. Por defecto: './mallados'
+    plots : str, opcional
+        Ruta donde guardar los plots. Por defecto: './plots'
+    hysealab_shared : str, opcional
+        Ruta a la carpeta compartida de HySEALab. Por defecto: se detecta automáticamente
+        
+    Ejemplos:
+    ---------
+    # Configurar solo la ruta de simulaciones
+    epsilon.configure_paths(simulaciones="/home/user/mis_simulaciones")
+    
+    # Configurar múltiples rutas
+    epsilon.configure_paths(
+        simulaciones="~/HySEALab/simulaciones",
+        mallados="~/HySEALab/mallados",
+        plots="~/mis_resultados/plots"
+    )
+    
+    # Usar rutas absolutas
+    epsilon.configure_paths(
+        simulaciones="/mnt/scratch/HySEALab/simulaciones",
+        plots="/home/usuario/resultados"
+    )
+    """
+    global _PATHS
+    
+    if simulaciones is not None:
+        _PATHS['simulaciones'] = os.path.expanduser(simulaciones)
+    if mallados is not None:
+        _PATHS['mallados'] = os.path.expanduser(mallados)
+    if plots is not None:
+        _PATHS['plots'] = os.path.expanduser(plots)
+    if hysealab_shared is not None:
+        _PATHS['hysealab_shared'] = os.path.expanduser(hysealab_shared)
+    
+    # Crear directorios si no existen
+    for key in ['plots']:  # Solo crear plots automáticamente
+        if not os.path.exists(_PATHS[key]):
+            try:
+                os.makedirs(_PATHS[key], exist_ok=True)
+                print(f"✓ Directorio creado: {_PATHS[key]}")
+            except Exception as e:
+                print(f"⚠ No se pudo crear {_PATHS[key]}: {e}")
+    
+    print("Configuración de rutas actualizada:")
+    for key, value in _PATHS.items():
+        if value:
+            exists = "✓" if os.path.exists(value) else "✗"
+            print(f"  {exists} {key}: {value}")
+
+
+def get_path(path_type):
+    """
+    Obtiene la ruta configurada para un tipo específico.
+    
+    Parámetros:
+    -----------
+    path_type : str
+        Tipo de ruta: 'simulaciones', 'mallados', 'plots', 'hysealab_shared'
+        
+    Retorna:
+    --------
+    str : La ruta configurada
+    """
+    return _PATHS.get(path_type, _DEFAULT_PATHS.get(path_type))
+
+
+def show_configuration():
+    """
+    Muestra la configuración actual de rutas.
+    """
+    print("═" * 60)
+    print("CONFIGURACIÓN ACTUAL DE EPSILON")
+    print("═" * 60)
+    for key, value in _PATHS.items():
+        if value:
+            exists = os.path.exists(value)
+            status = "✓ Existe" if exists else "✗ No existe"
+            print(f"{key:20} : {value}")
+            print(f"{'':20}   [{status}]")
+    print("═" * 60)
+    print("\nPara cambiar la configuración, usar:")
+    print("  epsilon.configure_paths(simulaciones='ruta', mallados='ruta', plots='ruta')")
+    print()
+
+
+# Outputs para widgets
 output = Output() # usados para los Loading...
 output0 = Output()  #usado para las representaciones en PyGMT
 output1 = Output()  #usado para seleccionar opciones en las carpetas
@@ -19,11 +149,27 @@ output2 = Output()  #usado para los plots y algunos widgets
 output3 = Output()  #usado para los sliders de las variables temporales
 output4 = Output() #usado para botones de variables temporales
 
-def display(path="./simulaciones"):
+def display(path=None):
     """
     Escanea el directorio dado y genera botones para los archivos .nc
     y las carpetas, asociándolos a las funciones elegirdeuna y elegirarch.
+    
+    Parámetros:
+    -----------
+    path : str, opcional
+        Ruta al directorio de simulaciones. Si no se especifica, usa la ruta
+        configurada con configure_paths() o './simulaciones' por defecto.
     """
+    if path is None:
+        path = get_path('simulaciones')
+    
+    if not os.path.exists(path):
+        print(f"⚠ ADVERTENCIA: El directorio '{path}' no existe.")
+        print(f"   Por favor, verifica la ruta o configura una ruta personalizada con:")
+        print(f"   epsilon.configure_paths(simulaciones='tu_ruta')")
+        return
+    
+    print(f"Buscando simulaciones en: {path}")
     print("Please, select a simulation output:")
     
     botones = []
@@ -86,7 +232,7 @@ def elegirdeuna(nombre):
     output3.clear_output() 
     output4.clear_output()
     
-    archivo = "./simulaciones/"+nombre 
+    archivo = os.path.join(get_path('simulaciones'), nombre)
     op = ""
     with output:
         print("Loading...")
@@ -154,7 +300,7 @@ def elegirarch(nombre):
         print("Loading...")
     with output2:
         output2.clear_output()  
-        carpeta = os.path.join("./simulaciones", nombre)
+        carpeta = os.path.join(get_path('simulaciones'), nombre)
 
         archivos = os.listdir(carpeta)
         dataset_info = []
@@ -221,7 +367,7 @@ def multiarch(dataset_info):
     output4.clear_output()
     
     if dataset_info:
-        ruta_archivo_top = "./simulaciones/"+dataset_info[0][0]  
+        ruta_archivo_top = os.path.join(get_path('simulaciones'), dataset_info[0][0])  
         dataset = nc.Dataset(ruta_archivo_top, mode="r")  
         
         #x = dataset.variables['lon'][:]
@@ -668,9 +814,9 @@ def mostmap3d(variable, op, x, y, t, coord):
         def guardar_plot(b):
             fig = fig_container["fig"]
             if fig:
-                fig.savefig("plots/mapa_variable_3d.png")
+                fig.savefig(os.path.join(get_path('plots'), "mapa_variable_3d.png"))
                 with output3:
-                    print("Imagen guardada como 'mapa_variable_3d.png' en la carpeta plots.")
+                    print(f"Imagen guardada como 'mapa_variable_3d.png' en la carpeta {get_path('plots')}.")
 
         def guardar_gif(b):
             with output3:
@@ -759,9 +905,9 @@ def mostrar_inun(eta_ajust ,bathy ,op ,x ,y ,t ,coord):
         def guardar_plot(b):
             fig = fig_container["fig"]
             if fig:
-                fig.savefig("plots/mapa_variable_3d.png")
+                fig.savefig(os.path.join(get_path('plots'), "mapa_variable_3d.png"))
                 with output3:
-                    print("Imagen guardada como 'mapa_variable_3d.png' en la carpeta plots.")
+                    print(f"Imagen guardada como 'mapa_variable_3d.png' en la carpeta {get_path('plots')}.")
 
         def guardar_gif(b):
             with output3:
@@ -1426,7 +1572,7 @@ def sectemporal_boya(variable, t, op):
         boton_guardar.on_click(guardar_plot)
         dp(boton)
         def guardar_plot(b):
-            fig.savefig("grafico_boya.png")
+            fig.savefig(os.path.join(get_path('plots'), "grafico_boya.png"))
             print("Imagen guardada como 'grafico_boya.png'")
 
         
@@ -1659,9 +1805,9 @@ def menu2d_arrival_times(variable, op, x, y, coord):
         def guardar_plot(b):
             fig = fig_container["fig"]
             if fig:
-                fig.savefig("plots/mapa_variable_2d.png")
+                fig.savefig(os.path.join(get_path('plots'), "mapa_variable_2d.png"))
                 with output3:
-                    print("Imagen guardada como 'mapa_variable_2d.png' en la carpeta plots.")
+                    print(f"Imagen guardada como 'mapa_variable_2d.png' en la carpeta {get_path('plots')}.")
             else:
                 with output3:
                     print("Primero genera el gráfico antes de guardar.")
@@ -1725,7 +1871,7 @@ def operarvar(nombre):
         output.clear_output()
         print("Cargando...")
 
-    archivo = "./simulaciones/" + nombre 
+    archivo = os.path.join(get_path('simulaciones'), nombre) 
 
     with output2:
         output0.clear_output()
