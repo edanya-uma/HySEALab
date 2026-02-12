@@ -7,10 +7,22 @@ Herramienta interactiva para visualizar y analizar resultados de simulaciones de
 - **epsilon.py**: Biblioteca principal con todas las funciones de visualización
 - **Manual_Usuario_Epsilon.ipynb**: Tutorial interactivo y documentación completa
 - **epsilon_config_example.py**: Plantilla de configuración para rutas personalizadas
-- **simulaciones/**: Directorio para tus archivos .nc (crear si no existe)
+- **SETUP_USUARIO.md**: 🔥 **Guía de configuración para usuarios de HySEALab** (¡LEER PRIMERO!)
 - **README.md**: Este archivo
 
 ## 🚀 Inicio Rápido
+
+### ⚠️ Para usuarios de HySEALab
+
+**Lee primero:** [SETUP_USUARIO.md](SETUP_USUARIO.md) - Guía completa de configuración
+
+**Resumen rápido:**
+1. **NO ejecutes notebooks desde esta carpeta** (HySEALab-Library)
+2. Copia el manual a tu directorio personal: `cp Manual_Usuario_Epsilon.ipynb ~/proyecto_tsunami/`
+3. Trabaja desde tu carpeta personal
+4. Importa epsilon desde aquí con `sys.path.insert(0, '~/HySEALab/HySEALab-Library')`
+
+### Para otros usuarios
 
 ### 1. Clonar el repositorio
 
