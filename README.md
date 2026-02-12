@@ -16,7 +16,17 @@ Herramienta interactiva para visualizar y analizar resultados de simulaciones de
 
 **Lee primero:** [SETUP_USUARIO.md](SETUP_USUARIO.md) - Guía completa de configuración
 
-**Resumen rápido:**
+**Setup automático (RECOMENDADO):**
+```bash
+cd ~/HySEALab/HySEALab-Library
+bash setup_hysealab.sh
+```
+Este script:
+- Crea la estructura de directorios en tu home
+- Copia el manual a tu carpeta personal
+- Crea tu archivo de configuración personal
+
+**Setup manual:**
 1. **NO ejecutes notebooks desde esta carpeta** (HySEALab-Library)
 2. Copia el manual a tu directorio personal: `cp Manual_Usuario_Epsilon.ipynb ~/proyecto_tsunami/`
 3. Trabaja desde tu carpeta personal

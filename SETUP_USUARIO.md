@@ -26,6 +26,29 @@
 
 ## 🚀 Setup Inicial (Solo una vez)
 
+### Opción A: Setup Automático (RECOMENDADO) ⚡
+
+Usa el script de configuración automática:
+
+```bash
+cd ~/HySEALab/HySEALab-Library
+bash setup_hysealab.sh
+```
+
+El script hará todo por ti:
+- ✅ Crea `~/proyecto_tsunami/` con la estructura de directorios
+- ✅ Copia el manual a tu carpeta personal
+- ✅ Crea tu archivo de configuración personalizado
+- ✅ Te guía en los siguientes pasos
+
+Luego solo necesitas:
+1. Editar `~/proyecto_tsunami/epsilon_config.py` con tus rutas (opcional)
+2. `cd ~/proyecto_tsunami && jupyter lab`
+
+### Opción B: Setup Manual 🔧
+
+Si prefieres hacerlo manualmente:
+
 ### 1. Crear tu carpeta de trabajo
 
 ```bash
