@@ -12,6 +12,7 @@ from pyproj import CRS, Transformer
 import imageio.v2 as imageio
 import math
 
+
 # ============================================================================
 # CONFIGURACIÓN DE RUTAS - Personalizable por usuario
 # ============================================================================
