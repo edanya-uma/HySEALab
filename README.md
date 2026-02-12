@@ -5,9 +5,12 @@ Herramienta interactiva para visualizar y analizar resultados de simulaciones de
 ## 📋 Contenido del Repositorio
 
 - **epsilon.py**: Biblioteca principal con todas las funciones de visualización
+- **Setup_HySEALab.ipynb**: 🎯 **Notebook de setup automático** (¡EJECUTA ESTO PRIMERO desde JupyterLab!)
+- **setup_hysealab.sh**: Script bash de setup automático (alternativa desde terminal)
+- **setup_hysealab.py**: Script Python de setup automático (alternativa desde Python)
 - **Manual_Usuario_Epsilon.ipynb**: Tutorial interactivo y documentación completa
 - **epsilon_config_example.py**: Plantilla de configuración para rutas personalizadas
-- **SETUP_USUARIO.md**: 🔥 **Guía de configuración para usuarios de HySEALab** (¡LEER PRIMERO!)
+- **SETUP_USUARIO.md**: Guía detallada de configuración para usuarios de HySEALab
 - **README.md**: Este archivo
 
 ## 🚀 Inicio Rápido
@@ -16,21 +19,36 @@ Herramienta interactiva para visualizar y analizar resultados de simulaciones de
 
 **Lee primero:** [SETUP_USUARIO.md](SETUP_USUARIO.md) - Guía completa de configuración
 
-**Setup automático (RECOMENDADO):**
+**Opción 1: Setup desde Jupyter Notebook (RECOMENDADO para JupyterLab)** 🎯
+1. Abre JupyterLab
+2. Navega a `~/HySEALab/HySEALab-Library/`
+3. Abre y ejecuta `Setup_HySEALab.ipynb`
+4. Sigue las instrucciones en el notebook
+
+**Opción 2: Setup desde terminal (si tienes acceso a terminal)** ⚡
 ```bash
 cd ~/HySEALab/HySEALab-Library
 bash setup_hysealab.sh
+# O alternativamente:
+python setup_hysealab.py
 ```
-Este script:
+
+**Opción 3: Setup desde celda de notebook**
+```python
+# En cualquier notebook, ejecuta:
+%run ~/HySEALab/HySEALab-Library/setup_hysealab.py
+```
+
+Cualquiera de estas opciones:
 - Crea la estructura de directorios en tu home
 - Copia el manual a tu carpeta personal
 - Crea tu archivo de configuración personal
 
-**Setup manual:**
+**Setup manual (si prefieres hacerlo a mano):**
 1. **NO ejecutes notebooks desde esta carpeta** (HySEALab-Library)
-2. Copia el manual a tu directorio personal: `cp Manual_Usuario_Epsilon.ipynb ~/proyecto_tsunami/`
+2. Copia el manual: `cp Manual_Usuario_Epsilon.ipynb ~/proyecto_tsunami/`
 3. Trabaja desde tu carpeta personal
-4. Importa epsilon desde aquí con `sys.path.insert(0, '~/HySEALab/HySEALab-Library')`
+4. Importa epsilon con `sys.path.insert(0, '~/HySEALab/HySEALab-Library')`
 
 ### Para otros usuarios
 
