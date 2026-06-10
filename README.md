@@ -1,6 +1,6 @@
 # Biblioteca Epsilon - Visualización de Tsunami-HySEA
 
-Herramienta interactiva para visualizar y analizar resultados de simulaciones de Tsunami-HySEA en formato NetCDF.
+Herramienta interactiva para visualizar y analizar resultados de simulaciones de Tsunami-HySEA en formato NetCDF y otras utilidades.
 
 ## 📋 Contenido del Repositorio
 
