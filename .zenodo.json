@@ -80,7 +80,7 @@
     }
     ],
 
-    "description": "HySEALab is a collection of Jupyter Notebooks designed to assist researchers in preprocessing, processing, and postprocessing tasks for the HySEA family of simulation codes. The notebooks cover activities including bathymetric and topographic data preparation, mesh generation, simulation setup and execution, and analysis and visualization of results, providing an interactive environment for working with tsunami and coastal flood simulations. The software is developed by the EDANYA Research Group at the University of Málaga.",
+    "description": "HySEALab is a collection of Jupyter Notebooks designed to assist researchers in preprocessing, processing, and postprocessing tasks for the HySEA family of simulation codes. The notebooks cover activities including bathymetric and topographic data preparation, mesh generation, simulation setup and execution, and analysis and visualization of results, providing an interactive environment for working with tsunami and coastal flood simulations. The software is developed by the EDANYA Research Group at the University of Málaga. This work was funded by EPOS ERIC through the EPOS TCS Tsunami Multi-Year Collaboration Agreement (MYCA) 2024–2028 (UMA internal ref. OTRI 8.06.UE/54.9074 – EPOS TCS Tsunami).",
 
     "keywords": [
         "tsunami",
