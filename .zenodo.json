@@ -1,19 +1,106 @@
 {
-  "title": "HySEALab: Biblioteca Epsilon",
-  "description": "Herramienta interactiva para visualizar y analizar resultados de simulaciones de Tsunami-HySEA en formato NetCDF y otras utilidades.",
-  "upload_type": "software",
-  "creators": [
+    "upload_type": "software",
+
+    "publication_date": "2026-06-10",
+
+    "title": "HySEALab: a collection of Jupyter Notebooks adapted for preprocessing, processing and post-processing activities for HySEA family of codes",
+
+    "creators": [
     {
-      "name": "Grupo EDANYA, Universidad de Málaga"
+        "name": "EDANYA Research Group",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "",
+        "email": "t_hysea@uma.es"
+    },
+    {
+        "name": "González Vida, José Manuel",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0003-4996-1972",
+        "email": "jgv@uma.es"
+    },
+    {
+        "name": "Macías Sánchez, Jorge",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0002-3010-8050",
+        "email": "jmacias@uma.es"
+    },
+    {
+        "name": "Sánchez Linares, Carlos",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0002-5493-5982",
+        "email": "csl@uma.es"
+    },
+    {
+        "name": "de la Asunción, Marc",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0003-3130-1335",
+        "email": "marcah@uma.es"
+    },
+    {
+        "name": "Castro Díaz, Manuel Jesús",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0003-3164-7715",
+        "email": "mjcastro@uma.es"
+    },
+    {
+        "name": "Morales de Luna, Tomás",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0001-7162-9672",
+        "email": "tmorales@uma.es"
+    },
+    {
+        "name": "Ortega Acosta, Sergio",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0001-7246-2085",
+        "email": "sergio.ortega@uma.es"
+    },
+    {
+        "name": "Escalante, Cipriano",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "0000-0002-7602-5920",
+        "email": "escalante@uma.es"
+    },
+    {
+        "name": "Rodríguez Gálvez, Juan Francisco",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "",
+        "email": "juanrg@uma.es"
+    },
+    {
+        "name": "González del Pino, Alejandro",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "",
+        "email": "alexgp@uma.es"
+    },
+    {
+        "name": "Kieninger Montenegro, Francisco",
+        "affiliation": "Universidad de Málaga",
+        "orcid": "",
+        "email": "pacokieninger271@uma.es"
     }
-  ],
-  "access_right": "open",
-  "license": "GPL-3.0-or-later",
-  "keywords": [
-    "tsunami",
-    "hysea",
-    "visualization",
-    "jupyter-notebook",
-    "netcdf"
-  ]
+    ],
+
+    "description": "HySEALab is a collection of Jupyter Notebooks designed to assist researchers in preprocessing, processing, and postprocessing tasks for the HySEA family of simulation codes. The notebooks cover activities including bathymetric and topographic data preparation, mesh generation, simulation setup and execution, and analysis and visualization of results, providing an interactive environment for working with tsunami and coastal flood simulations. The software is developed by the EDANYA Research Group at the University of Málaga.",
+
+    "keywords": [
+        "tsunami",
+        "hysea",
+        "visualization",
+        "jupyter-notebook",
+        "netcdf",
+        "preprocessing",
+        "postprocessing",
+        "simulation",
+        "shallow-water-equations",
+        "tsunami-simulation",
+        "bathymetry",
+        "coastal-flooding",
+        "scientific-computing"
+    ],
+
+    "access_right": "open",
+
+    "license": "GPL-3.0-or-later",
+
+    "grants": []
 }
