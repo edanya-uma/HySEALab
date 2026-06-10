@@ -1,0 +1,19 @@
+{
+  "title": "HySEALab: Biblioteca Epsilon",
+  "description": "Herramienta interactiva para visualizar y analizar resultados de simulaciones de Tsunami-HySEA en formato NetCDF y otras utilidades.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Grupo EDANYA, Universidad de Málaga"
+    }
+  ],
+  "access_right": "open",
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "tsunami",
+    "hysea",
+    "visualization",
+    "jupyter-notebook",
+    "netcdf"
+  ]
+}
