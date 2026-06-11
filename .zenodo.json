@@ -1,7 +1,9 @@
 {
     "upload_type": "software",
 
-    "publication_date": "2026-06-10",
+    "version": "2.0.0",
+
+    "publication_date": "2026-06-11",
 
     "title": "HySEALab: a collection of Jupyter Notebooks adapted for preprocessing, processing and post-processing activities for HySEA family of codes",
 

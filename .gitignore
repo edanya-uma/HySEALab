@@ -1,0 +1,14 @@
+# Jupyter
+.ipynb_checkpoints/
+
+# Per-notebook data folders (large input/output files: GEBCO tiles, .grd, .nc)
+preprocessing/data/
+processing/data/
+postprocessing/data/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store

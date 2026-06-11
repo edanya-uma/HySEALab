@@ -90,4 +90,5 @@ keywords:
   - visualization
   - netcdf
 license: GPL-3.0
-date-released: '2026-06-10'
+version: 2.0.0
+date-released: '2026-06-11'
