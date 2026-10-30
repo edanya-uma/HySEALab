@@ -1,9 +1,9 @@
 {
     "upload_type": "software",
 
-    "version": "2.0.0",
+    "version": "2.1.0",
 
-    "publication_date": "2026-06-11",
+    "publication_date": "2026-10-30",
 
     "title": "HySEALab: a collection of Jupyter Notebooks adapted for preprocessing, processing and post-processing activities for HySEA family of codes",
 
@@ -82,7 +82,7 @@
     }
     ],
 
-    "description": "HySEALab is a collection of Jupyter Notebooks designed to assist researchers in preprocessing, processing, and postprocessing tasks for the HySEA family of simulation codes. The notebooks cover activities including bathymetric and topographic data preparation, mesh generation, simulation setup and execution, and analysis and visualization of results, providing an interactive environment for working with tsunami and coastal flood simulations. The software is developed by the EDANYA Research Group at the University of Málaga. This work was funded by EPOS ERIC through the EPOS TCS Tsunami Multi-Year Collaboration Agreement (MYCA) 2024–2028 (UMA internal ref. OTRI 8.06.UE/54.9074 – EPOS TCS Tsunami).",
+    "description": "HySEALab is a collection of Jupyter Notebooks designed to assist researchers in preprocessing, processing, and postprocessing tasks for the HySEA family of simulation codes. The notebooks cover activities including bathymetric and topographic data preparation, mesh generation, simulation setup and execution, and analysis and visualization of results, providing an interactive environment for working with tsunami and coastal flood simulations. Since version 2.1.0 it also includes tools to publish simulation experiments (parameter files, topo-bathymetry and results) to the CINECA Simulation Data Lake (SDL@CINECA) through its REST API, following the SDL experiment / simulation run / dataset data model, and to retrieve published data. The software is developed by the EDANYA Research Group at the University of Málaga. This work was funded by EPOS ERIC through the EPOS TCS Tsunami Multi-Year Collaboration Agreement (MYCA) 2024–2028 (UMA internal ref. OTRI 8.06.UE/54.9074 – EPOS TCS Tsunami).",
 
     "keywords": [
         "tsunami",
@@ -97,7 +97,10 @@
         "tsunami-simulation",
         "bathymetry",
         "coastal-flooding",
-        "scientific-computing"
+        "scientific-computing",
+        "data-publication",
+        "fair-data",
+        "simulation-data-lake"
     ],
 
     "access_right": "open",

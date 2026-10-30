@@ -1,0 +1,39 @@
+# Editable registry of scientific codes for SDL publishing.
+# sdl_lib.py loads this file and MERGES it over its built-in defaults, so you can
+# edit / add codes here WITHOUT touching any Python. Manage it from the notebook
+# `code_registry_manager_EN.ipynb`, or edit by hand and re-run the Setup cell.
+#
+# Each top-level key is the code id you put in the manifest as experiment.code.name.
+# Fields:
+#   display_name       : human-readable name shown on the SDL
+#   keywords           : merged with the experiment keywords at publish time
+#   description_prefix : prepended context for the experiment description
+#   default_theme      : SDL theme list used when creating the experiment
+#                        (geohazards | wavefms | seismicdata | volcanoobservatis;
+#                        it decides the EPOS Platform catalogue the experiment appears in)
+#
+# Search order used by sdl_lib: $SDL_CODES_FILE -> this file (next to sdl_lib.py) -> ./sdl_codes.yml
+
+tsunami_hysea:
+  display_name: Tsunami-HySEA
+  keywords: [tsunami, hysea, shallow-water, geophysics, cuda]
+  description_prefix: >-
+    Numerical simulation of tsunami propagation and inundation generated using the
+    Tsunami-HySEA model.
+  default_theme: [geohazards]
+
+landslide_hysea:
+  display_name: Landslide-HySEA
+  keywords: [tsunami, landslide, hysea, shallow-water, geophysics, cuda]
+  description_prefix: >-
+    Numerical simulation of landslide-generated tsunamis (coupled fluid/granular
+    Savage-Hutter shallow flow) using the Landslide-HySEA model.
+  default_theme: [geohazards]
+
+multilayer_hysea:
+  display_name: Multilayer-HySEA
+  keywords: [tsunami, hysea, multilayer, dispersive, non-hydrostatic, shallow-water, geophysics, cuda]
+  description_prefix: >-
+    Numerical simulation of tsunami propagation with the dispersive / non-hydrostatic
+    Multilayer-HySEA model.
+  default_theme: [geohazards]

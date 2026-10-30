@@ -9,6 +9,7 @@ HySEALab provides a set of **self-contained, fully documented Jupyter Notebooks*
 - **Preprocessing** — preparation of input data: bathymetric/topographic grids, nested meshes, buoy and POI (Points Of Interest) coordinates, friction maps, parameter files…
 - **Processing** — simulation setup, launching and monitoring of Tsunami-HySEA runs.
 - **Postprocessing** — analysis and visualization of simulation outputs: propagation maps, time series at POIs, inundation maps, animations…
+- **Data publishing** — reproducible publication of simulation experiments (parameter files, topo-bathymetry and results) to the CINECA [Simulation Data Lake](https://sdl.hpc.cineca.it), and download of published data.
 
 ## 📂 Repository Structure
 
@@ -24,6 +25,9 @@ HySEALab/
 ├── postprocessing/       Notebooks for analysis and visualization of results
 │   ├── JN08_Inundation_Maps.ipynb
 │   └── 01_map_viewer_standalone.ipynb   (beta)
+├── sdl/                  Publishing to the CINECA Simulation Data Lake (SDL)
+│   ├── sdl_lib.py, sdl_codes.yml, sdl_publish_manifest.py, sdl_manifest.example.yml
+│   └── 7 notebooks (guide, catalogues, publish, append, download)
 ├── datasets/             Bundled datasets for the hands-on notebooks (zip)
 │   └── topobathy_JN10.zip
 ├── deprecated/           ⚠️ Legacy Epsilon library (no longer maintained)
@@ -44,6 +48,8 @@ The notebooks are **self-contained**: each one declares its own requirements (Py
 No additional library or package from this repository is required — just open a notebook in JupyterLab and follow it cell by cell.
 
 > ⚠️ **Exception:** the notebooks in [processing/](processing/) launch Tsunami-HySEA directly, so their kernel must run **on the compute machine** that hosts the GPU(s) and the Tsunami-HySEA installation (see [processing/README.md](processing/README.md)).
+
+> ⚠️ **Second exception:** the notebooks in [sdl/](sdl/) share the companion library `sdl_lib.py` (keep the folder together), need internet access and an SDL account (see [sdl/README.md](sdl/README.md)).
 
 ## 🐍 Python and Library Requirements
 
@@ -93,6 +99,8 @@ Notebooks: JN04, JN10, JN12, JN13 in [preprocessing/](preprocessing/); JN_Launch
 - **JN04**: a GEBCO GeoTIFF tile downloaded from [download.gebco.net](https://download.gebco.net).
 - **JN08** (Step 4 only): internet access for satellite base tiles.
 
+**SDL publishing tools** ([sdl/](sdl/)): `requests`, `requests_toolbelt`, `pyyaml`, `jsonschema`, `tqdm`, `ipywidgets`, plus `rasterio`, `numpy`, `matplotlib` and `cmocean` for spatial coverage and bathymetry plots.
+
 The **Requirements** section at the top of each notebook is the authoritative list for that notebook, including install one-liners.
 
 ### Running a notebook
@@ -126,6 +134,20 @@ jupyter lab JN04_Grid_from_GEBCO.ipynb
 |----------|-------------|
 | [JN08_Inundation_Maps.ipynb](postprocessing/JN08_Inundation_Maps.ipynb) | Compute and map the on-land inundation depth of any scenario: offline and satellite-tile maps, flooded-area statistics, run-up diagram. Works with any grid resolution. |
 | [01_map_viewer_standalone.ipynb](postprocessing/01_map_viewer_standalone.ipynb) 🧪 | **(beta)** Interactive viewer for all output variables: 2D maps with configurable colour scales, isochrone mode for arrival times, PNG export and GIF animations. |
+
+### Data publishing (SDL)
+
+Tools to publish simulation experiments to the CINECA Simulation Data Lake and to retrieve them. Each experiment folder (`parfiles/`, `bathy/`, `sim/`) becomes an SDL experiment whose simulation runs, common inputs and outputs are detected automatically; batch publication is driven by a YAML manifest. See [sdl/README.md](sdl/README.md).
+
+| Notebook | Description |
+|----------|-------------|
+| [sdl_publishing_guide_EN.ipynb](sdl/sdl_publishing_guide_EN.ipynb) | Step-by-step publishing guide, with an optional check of the project folder. |
+| [code_registry_manager_EN.ipynb](sdl/code_registry_manager_EN.ipynb) | Manage the simulation codes (keywords, theme) used when publishing. |
+| [catalogue_manager_EN.ipynb](sdl/catalogue_manager_EN.ipynb) | Search or create persons, organizations and projects in the SDL catalogue. |
+| [sdl_generate_publish_EN.ipynb](sdl/sdl_generate_publish_EN.ipynb) | Form → manifest → publication of a new experiment. |
+| [sdl_append_simulations_EN.ipynb](sdl/sdl_append_simulations_EN.ipynb) | Add new simulation runs to an existing experiment version. |
+| [sdl_publish_manifest_EN.ipynb](sdl/sdl_publish_manifest_EN.ipynb) | Publish an existing manifest, with progress bars. |
+| [sdl_browse_fetch_EN.ipynb](sdl/sdl_browse_fetch_EN.ipynb) | Download published experiment files for post-processing. |
 
 ## ⚠️ Deprecation Notice — Epsilon Library
 

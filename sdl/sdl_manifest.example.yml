@@ -1,0 +1,44 @@
+# Example SDL manifest for a Tsunami-HySEA run.
+# Copy it into your project as `sdl_manifest.yml` and edit, or generate a fresh
+# skeleton with:  python sdl_publish_manifest.py generate <project_dir>
+# Credentials are NOT stored here (use SDL_USERNAME / SDL_PASSWORD env vars).
+
+sdl:
+  server: prod                       # prod | dev
+
+experiment:
+  mode: new                          # new | existing
+  id:                                # required only if mode=existing
+  real_event:
+    is_real: true
+    name: "Marques de Pombal"
+    date: "1755-11-01"
+  title: ""                          # empty -> "<event> (<date>)" or the parfile name
+  description: "Tsunami propagation scenario (1755 Lisbon source) computed with Tsunami-HySEA."
+  code:
+    name: tsunami_hysea
+    version: "4.3.0"
+  keywords: ["lisbon", "1755"]       # merged with the code's default keywords
+  authors:                           # by stable id (recommended) or by name (searched/created)
+    - id: 58
+    - name: {given: "Jorge", family: "Macias"}
+      email: "example@uma.es"
+  organizations:
+    - id: 12                         # or:  - name: "University of Malaga"
+  projects:
+    - id: 7                          # or:  - name: "Geo-INQUIRE"
+  # theme: [geohazards]             # EPOS catalogue: geohazards | wavefms | seismicdata | volcanoobservatis
+  requestDOI: true
+
+version:
+  name: "1.0.0"
+  create_if_missing: true
+
+publication:
+  visibility: private                # private | public
+  license: cc-by-4.0                 # required only if visibility=public
+
+project:
+  root: "."                          # relative to this manifest; folder with parfiles/ bathy/ sim/
+  parfile:                           # empty -> first .txt in parfiles/
+  spatial_coverage: auto             # auto = bounding box of the largest grid -> EPSG:4326
